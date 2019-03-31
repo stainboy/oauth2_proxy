@@ -128,7 +128,6 @@ func main() {
 	if len(opts.EmailDomains) != 0 && opts.AuthenticatedEmailsFile == "" {
 		if len(opts.WelcomeText) > 1 {
 			oauthproxy.SignInMessage = opts.WelcomeText
-			oauthproxy.
 		} else if len(opts.EmailDomains) > 1 {
 			oauthproxy.SignInMessage = fmt.Sprintf("Authenticate using one of the following domains: %v", strings.Join(opts.EmailDomains, ", "))
 		} else if opts.EmailDomains[0] != "*" {
