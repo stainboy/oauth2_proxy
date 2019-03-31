@@ -52,6 +52,7 @@ var SignatureHeaders = []string{
 
 // OAuthProxy is the main authentication proxy
 type OAuthProxy struct {
+	Options        *Options
 	CookieSeed     string
 	CookieName     string
 	CSRFCookieName string
@@ -226,6 +227,7 @@ func NewOAuthProxy(opts *Options, validator func(string) bool) *OAuthProxy {
 	}
 
 	return &OAuthProxy{
+		Options:        opts,
 		CookieName:     opts.CookieName,
 		CSRFCookieName: fmt.Sprintf("%v_%v", opts.CookieName, "csrf"),
 		CookieSeed:     opts.CookieSecret,
@@ -570,6 +572,10 @@ func (p *OAuthProxy) SignInPage(rw http.ResponseWriter, req *http.Request, code 
 		Version:       VERSION,
 		ProxyPrefix:   p.ProxyPrefix,
 		Footer:        template.HTML(p.Footer),
+	}
+
+	if len(p.Options.OAuth2ProviderText) > 1 {
+		t.ProviderName = p.Options.OAuth2ProviderText
 	}
 	p.templates.ExecuteTemplate(rw, "sign_in.html", t)
 }

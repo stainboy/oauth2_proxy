@@ -95,6 +95,9 @@ func main() {
 	flagSet.String("pubjwk-url", "", "JWK pubkey access endpoint: required by login.gov")
 	flagSet.Bool("gcp-healthchecks", false, "Enable GCP/GKE healthcheck endpoints")
 
+	flagSet.String("welcome-text", "", "A welcome text displayed on home page")
+	flagSet.String("oauth-provider-text", "", "OAuth2 provider name for display purpose")
+
 	flagSet.Parse(os.Args[1:])
 
 	if *showVersion {
@@ -123,7 +126,10 @@ func main() {
 	oauthproxy := NewOAuthProxy(opts, validator)
 
 	if len(opts.EmailDomains) != 0 && opts.AuthenticatedEmailsFile == "" {
-		if len(opts.EmailDomains) > 1 {
+		if len(opts.WelcomeText) > 1 {
+			oauthproxy.SignInMessage = opts.WelcomeText
+			oauthproxy.
+		} else if len(opts.EmailDomains) > 1 {
 			oauthproxy.SignInMessage = fmt.Sprintf("Authenticate using one of the following domains: %v", strings.Join(opts.EmailDomains, ", "))
 		} else if opts.EmailDomains[0] != "*" {
 			oauthproxy.SignInMessage = fmt.Sprintf("Authenticate using %v", opts.EmailDomains[0])

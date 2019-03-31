@@ -14,7 +14,6 @@ import (
 	"time"
 
 	oidc "github.com/coreos/go-oidc"
-	"github.com/dgrijalva/jwt-go"
 	"github.com/mbland/hmacauth"
 	"github.com/pusher/oauth2_proxy/providers"
 )
@@ -91,6 +90,9 @@ type Options struct {
 	JWTKey          string `flag:"jwt-key" cfg:"jwt_key" env:"OAUTH2_PROXY_JWT_KEY"`
 	PubJWKURL       string `flag:"pubjwk-url" cfg:"pubjwk_url" env:"OAUTH2_PROXY_PUBJWK_URL"`
 	GCPHealthChecks bool   `flag:"gcp-healthchecks" cfg:"gcp_healthchecks" env:"OAUTH2_PROXY_GCP_HEALTHCHECKS"`
+
+	WelcomeText        string `flag:"welcome-text cfg:"welcome_text" env:"WELCOME_TEXT"`
+	OAuth2ProviderText string `flag:"oauth-provider-text" cfg:"oauth_provider_text" env:"OAUTH_PROVIDER_TEXT"`
 
 	// internal values that are set after config validation
 	redirectURL   *url.URL
