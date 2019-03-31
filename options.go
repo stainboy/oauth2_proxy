@@ -14,6 +14,7 @@ import (
 	"time"
 
 	oidc "github.com/coreos/go-oidc"
+	"github.com/dgrijalva/jwt-go"
 	"github.com/mbland/hmacauth"
 	"github.com/pusher/oauth2_proxy/providers"
 )
