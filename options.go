@@ -92,7 +92,7 @@ type Options struct {
 	PubJWKURL       string `flag:"pubjwk-url" cfg:"pubjwk_url" env:"OAUTH2_PROXY_PUBJWK_URL"`
 	GCPHealthChecks bool   `flag:"gcp-healthchecks" cfg:"gcp_healthchecks" env:"OAUTH2_PROXY_GCP_HEALTHCHECKS"`
 
-	WelcomeText        string `flag:"welcome-text cfg:"welcome_text" env:"WELCOME_TEXT"`
+	WelcomeText        string `flag:"welcome-text" cfg:"welcome_text" env:"WELCOME_TEXT"`
 	OAuth2ProviderText string `flag:"oauth-provider-text" cfg:"oauth_provider_text" env:"OAUTH_PROVIDER_TEXT"`
 
 	// internal values that are set after config validation
